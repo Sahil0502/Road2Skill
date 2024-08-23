@@ -1,6 +1,10 @@
-import express from "express";
+import express, { request, response } from "express";
 import mongoose from "mongoose";
 import router from "./routers/users.mjs";
+import passport from "passport";
+import "./strategies/local-strategy.mjs"
+import cookieParser from "cookie-parser";
+import  session  from "express-session";
 
 const app = express();
 
@@ -12,13 +16,68 @@ mongoose.connect("mongodb://localhost/roadmapapp")
 
 
 app.use(express.json());
+app.use (cookieParser('secret'));
+app.use(session({
+    secret:"secret",
+    resave:false,
+    saveUninitialized:false,
+    cookie: {
+        maxAge: 60000 * 60,
+    }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(router);
+
+//endpoint for login
+app.post("/api/auth",passport.authenticate("local"),(request,response)=>{
+    response.send({msg:"success"});
+});
+
+app.get("/api/auth/status",(request,response)=>{
+    try{
+        if(request.user){
+            return response.send({msg:"success",user:request.user});
+        }
+        else{
+            return response.send({msg:"fail"});
+        }
+    }
+    catch(err){
+        return response.send({msg:"fail"});
+    }
+});
+
+app.post("/api/auth/logout",(request,response)=>{
+    if(!request.user){
+        return response.send({msg:"fail"});
+    }
+    request.logout((err)=>{
+        if(err){
+            return response.send({msg:"fail"});
+        }
+        return response.send({msg:"success"});
+    });
+});
+
+
+
+
+
 const PORT = process.env.PORT || 3000;
 
-const mockusers = [
-    { id: 1, name: "John" },
-    { id: 2, name: "Jane" },
-    { id: 3, name: "Bob" }
+
+
+
+
+
+
+
+export const mockusers = [
+    { id: 1, username: "user1", email: "Xb5ZG@example.com", password: "password1" },
+    { id: 2, username: "user2", email: "a1B0M@example.com", password: "password2" },
+    { id: 3, username: "user3", email: "lT5pF@example.com", password: "password3" },
 ];
 
 // Middleware to log and validate PUT, PATCH, DELETE requests
@@ -33,6 +92,10 @@ function logAndValidate(req, res, next) {
 }
 
 app.get("/", (req, res) => {
+    console.log(req.session);
+    console.log(req.session.id);
+    req.session.visited = true;
+    res.cookie("test", "Hello",{maxAge: 60000,signed: true});
     res.status(201).send({ msg: 'Hello' });
 });
 

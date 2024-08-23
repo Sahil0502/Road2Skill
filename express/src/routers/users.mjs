@@ -16,6 +16,7 @@ router.post("/api/users",async (request,response)=>{
 
 router.get("/api/users/:username",async (request,response)=>{
     const {username} = request.params;
+    console.log(request.signedCookies);
     try{
         const user = await User.findOne({username});
         return response.send(user);
