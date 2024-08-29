@@ -2,7 +2,8 @@ import passport from "passport";
 import { Strategy } from "passport-local";
 import { User } from "../mongoose/schemas/user.mjs";
 import { mockusers } from "../index.mjs";
-
+import { hashPassword } from "../utils/helper.mjs";
+import bcrypt from "bcrypt";
 
 passport.serializeUser((user, done) => {
     console.log(`Serializing user ${user.id}`);
@@ -14,10 +15,10 @@ passport.serializeUser((user, done) => {
         done(err, null);
     }
 });
-passport.deserializeUser((id, done) => {
+passport.deserializeUser(async(id, done) => {
     console.log(`Deserializing user ${id}`);
     try{
-        const findUser = mockusers.find((user) => user.id === id);
+        const findUser =  await User.findById(id);
         if (!findUser) {
             return done(new Error("User not found"), null);
         }
@@ -29,13 +30,16 @@ passport.deserializeUser((id, done) => {
 });
 
 export default passport.use(
-    new Strategy((username,password,done) => {
+    new Strategy(async(username,password,done) => {
         console.log(`Username and password are ${username} and ${password}`);
         try{
-            const findUser = mockusers.find((user)=> user.username===username);
-            if(!findUser) throw new Error("User not found");
-            if(findUser.password !== password) 
-                throw new Error("Password not found");
+            const findUser = await User.findOne({username});
+            if (!findUser) {
+                return done(new Error("User not found"), null);
+            }
+            if(!bcrypt.compareSync(password,findUser.password)){
+                return done(new Error("Invalid password"),null);
+            }
             done(null,findUser);
         }
         catch (err){
