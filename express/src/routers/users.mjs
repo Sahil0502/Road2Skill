@@ -1,9 +1,9 @@
 import { request, response, Router } from "express";
 import { User } from "../mongoose/schemas/user.mjs";
 import { hashPassword } from "../utils/helper.mjs";
-const router = Router();
+const userRouter = Router();
 
-router.post("/api/users",async (request,response)=>{
+userRouter.post("/api/users",async (request,response)=>{
     const {body} = request;
     body.password = hashPassword(body.password);
     const newUser = new User(body);
@@ -17,7 +17,7 @@ router.post("/api/users",async (request,response)=>{
     }
 });
 
-router.get("/api/users/:username",async (request,response)=>{
+userRouter.get("/api/users/:username",async (request,response)=>{
     const {username} = request.params;
     console.log(request.signedCookies);
     try{
@@ -30,4 +30,4 @@ router.get("/api/users/:username",async (request,response)=>{
 });
 
 
-export default router;
+export default userRouter;

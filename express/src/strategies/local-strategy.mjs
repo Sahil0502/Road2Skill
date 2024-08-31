@@ -1,7 +1,6 @@
 import passport from "passport";
 import { Strategy } from "passport-local";
 import { User } from "../mongoose/schemas/user.mjs";
-import { mockusers } from "../index.mjs";
 import { hashPassword } from "../utils/helper.mjs";
 import bcrypt from "bcrypt";
 

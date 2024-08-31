@@ -1,6 +1,7 @@
 import express, { request, response } from "express";
 import mongoose from "mongoose";
-import router from "./routers/users.mjs";
+import userRouter from "./routers/users.mjs";
+import contributionRouter from "./routers/contribution.mjs";
 import passport from "passport";
 import "./strategies/local-strategy.mjs"
 import cookieParser from "cookie-parser";
@@ -32,13 +33,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(router);
-
+app.use(userRouter);
+app.use(contributionRouter);
 //endpoint for login
 app.post("/api/auth",passport.authenticate("local"),(request,response)=>{
     response.send({msg:"success"});
 });
-
+//endpoint for status
 app.get("/api/auth/status",(request,response)=>{
     try{
         if(request.user){
@@ -52,7 +53,7 @@ app.get("/api/auth/status",(request,response)=>{
         return response.send({msg:"fail"});
     }
 });
-
+//endpoint for logout
 app.post("/api/auth/logout",(request,response)=>{
     if(!request.user){
         return response.send({msg:"fail"});
@@ -65,36 +66,8 @@ app.post("/api/auth/logout",(request,response)=>{
     });
 });
 
-
-
-
-
 const PORT = process.env.PORT || 3000;
-
-
-
-
-
-
-
-
-export const mockusers = [
-    { id: 1, username: "user1", email: "Xb5ZG@example.com", password: "password1" },
-    { id: 2, username: "user2", email: "a1B0M@example.com", password: "password2" },
-    { id: 3, username: "user3", email: "lT5pF@example.com", password: "password3" },
-];
-
-// Middleware to log and validate PUT, PATCH, DELETE requests
-function logAndValidate(req, res, next) {
-    console.log(`${req.method} request to ${req.originalUrl} with data:`, req.body);
-    const parsedId = parseInt(req.params.id);
-    if (isNaN(parsedId)) {
-        return res.status(400).send({ msg: "Invalid ID format" });
-    }
-    req.parsedId = parsedId; // Store parsed ID for downstream use
-    next();
-}
-
+// endpoint for testing
 app.get("/", (req, res) => {
     console.log(req.session);
     console.log(req.session.id);
@@ -102,66 +75,7 @@ app.get("/", (req, res) => {
     res.cookie("test", "Hello",{maxAge: 60000,signed: true});
     res.status(201).send({ msg: 'Hello' });
 });
-
-app.get("/api/users", (req, res) => {
-    const { query: { filter, value } } = req;
-    if (filter && value) {
-        return res.send(mockusers.filter((user) => user[filter].includes(value)));
-    }
-    return res.send(mockusers);
-});
-
-app.get("/api/users/:id", (req, res) => {
-    const parsedId = parseInt(req.params.id);
-    if (isNaN(parsedId)) return res.status(400).send({ msg: "Invalid id" });
-    const user = mockusers.find((user) => user.id === parsedId);
-    if (!user) {
-        res.status(404).send({ msg: "User not found" });
-    } else {
-        res.send(user);
-    }
-});
-
-app.post("/api/users", (req, res) => {
-    const { body } = req;
-    const newUser = { id: mockusers[mockusers.length - 1].id + 1, ...body };
-    mockusers.push(newUser);
-    res.status(201).send(newUser);
-});
-
-app.put("/api/users/:id", logAndValidate, (req, res) => {
-    const user = mockusers.find(user => user.id === req.parsedId);
-    if (!user) {
-        return res.status(404).send({ msg: "User not found" });
-    }
-    const updatedUser = { ...user, ...req.body };
-    const index = mockusers.findIndex(user => user.id === req.parsedId);
-    mockusers[index] = updatedUser;
-    res.send(updatedUser);
-});
-
-app.patch("/api/users/:id", logAndValidate, (req, res) => {
-    const user = mockusers.find(user => user.id === req.parsedId);
-    if (!user) {
-        return res.status(404).send({ msg: "User not found" });
-    }
-    Object.keys(req.body).forEach(key => {
-        user[key] = req.body[key];
-    });
-    const index = mockusers.findIndex(user => user.id === req.parsedId);
-    mockusers[index] = user;
-    res.send(user);
-});
-
-app.delete("/api/users/:id", logAndValidate, (req, res) => {
-    const index = mockusers.findIndex(user => user.id === req.parsedId);
-    if (index === -1) {
-        return res.status(404).send({ msg: "User not found" });
-    }
-    mockusers.splice(index, 1);
-    res.send({ msg: "User deleted" });
-});
-
+// listening to port
 app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`);
 });
