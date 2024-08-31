@@ -7,9 +7,9 @@ import "./strategies/local-strategy.mjs"
 import cookieParser from "cookie-parser";
 import  session  from "express-session";
 import MongoStore from "connect-mongo";
-
+import cors from 'cors';
 const app = express();
-
+app.use(cors()); // Enable CORS for all routes
 // Connect to MongoDB
 mongoose.connect("mongodb://localhost/roadmapapp")
     .then(() => console.log("Connected to MongoDB"))
@@ -36,7 +36,7 @@ app.use(passport.session());
 app.use(userRouter);
 app.use(contributionRouter);
 //endpoint for login
-app.post("/api/auth",passport.authenticate("local"),(request,response)=>{
+app.post("/api/auth/login",passport.authenticate("local"),(request,response)=>{
     response.send({msg:"success"});
 });
 //endpoint for status

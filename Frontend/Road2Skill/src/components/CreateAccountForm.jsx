@@ -1,6 +1,7 @@
-// src/CreateAccountForm.jsx
 import React, { useState } from "react";
 import "../componentsCss/CreateAccountForm.css";
+import axios from 'axios'; // Import axios
+
 function CreateAccountForm() {
   const [formData, setFormData] = useState({
     username: "",
@@ -16,10 +17,16 @@ function CreateAccountForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Here you would typically send the data to your backend
+    try {
+      const response = await axios.post('/api/users', formData);
+      console.log("Account created:", response.data);
+      // Handle successful account creation, e.g., redirect or show a success message
+    } catch (error) {
+      console.error("Error creating account:", error.response.data);
+      // Handle error, e.g., show an error message
+    }
   };
 
   return (

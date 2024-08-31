@@ -1,0 +1,51 @@
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  /* padding: 10px 0; */
+  margin-right: 500px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  position: fixed; /* Make the navbar fixed */
+  top: 0; /* Position it at the top */
+  width: 99%; /* Make it span the full width of the viewport */
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+/* Navbar links */
+.navbar a {
+  color: rgb(0, 0, 0);
+  padding: 14px 20px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 10px;
+  border-radius: 4px;
+}
+
+/* Hover effect for links */
+.navbar a:hover {
+  /* transition: background-color 0.3s ease, color 0.3s ease; */
+  background-color: #007bff;
+  color: white;
+}
+
+/* Active link styling */
+.navbar a.active {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar a {
+    margin: 5px 0;
+  }
+}
