@@ -4,15 +4,14 @@
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  /* padding: 10px 0; */
   margin-right: 500px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  position: fixed; /* Make the navbar fixed */
-  top: 0; /* Position it at the top */
-  width: 99%; /* Make it span the full width of the viewport */
-  z-index: 1000; /* Ensure it stays above other content */
+  position: fixed;
+  top: 0;
+  width: 99%;
+  z-index: 1000;
 }
 
 /* Navbar links */
@@ -28,7 +27,6 @@
 
 /* Hover effect for links */
 .navbar a:hover {
-  /* transition: background-color 0.3s ease, color 0.3s ease; */
   background-color: #007bff;
   color: white;
 }
@@ -39,6 +37,24 @@
   color: white;
 }
 
+/* Log Out button styling */
+.logout-button {
+  padding: 14px 20px;
+  margin: 0 10px;
+  border: none;
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .navbar {
@@ -46,6 +62,10 @@
   }
 
   .navbar a {
+    margin: 5px 0;
+  }
+
+  .logout-button {
     margin: 5px 0;
   }
 }

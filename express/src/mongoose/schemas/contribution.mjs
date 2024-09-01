@@ -18,8 +18,6 @@ const contributionSchema = new Schema({
   roadmapDescription: {
     type: mongoose.Schema.Types.String,
     required: true,
-    minlength: 50,
-    maxlength: 5000,
   },
   roadmapSteps: [
     {
@@ -48,6 +46,12 @@ const contributionSchema = new Schema({
   estimatedTimeToComplete: {
     type: mongoose.Schema.Types.String,
     maxlength: 20,
+  },
+  tags:{
+    type: mongoose.Schema.Types.Array,
+    required: true,
+    maxlength: 20,
+
   },
   // Reference to the User schema
   user: {

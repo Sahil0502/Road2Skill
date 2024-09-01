@@ -1,14 +1,18 @@
+// Login.jsx
 import React, { useState } from 'react';
-import '../componentsCss/Login.css'; // Make sure the CSS file path is correct
+import { Link, useNavigate } from 'react-router-dom';
+import '../componentsCss/Login.css';
 import loginPic from '../assets/LoginImg.jpg';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function Login() {
+function Login({ setIsLoggedIn }) {  // Accept setIsLoggedIn as a prop
+
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
+
+  const navigate = useNavigate();  // Initialize useNavigate
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,9 +28,10 @@ function Login() {
     try {
       const response = await axios.post('/api/auth/login', formData);
       console.log('Login successful:', response.data);
-      // Handle successful login, e.g., redirect or store token
+      setIsLoggedIn(true);  // Update login status to true
+      navigate('/');  // Redirect to the home page
     } catch (error) {
-      console.error('Error logging in:', error.response.data);
+      console.error('Error logging in:', error.response?.data || error.message);
       // Handle login error, e.g., show error message
     }
   };
