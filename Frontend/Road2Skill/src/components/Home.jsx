@@ -1,9 +1,10 @@
 // src/components/Home.jsx
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../componentsCss/Home.css';
 
-function Home() {
+function Home({ isLoggedIn }) {
   const [categories] = useState([
     'Python Developer', 'Full Stack Developer', 'UI/UX Designer',
     'Data Science', 'ML Engineer', 'DevOps',
@@ -45,6 +46,19 @@ function Home() {
 
   return (
     <div className="home-container">
+      <div className="front-page">
+        <div className="front-page-description">
+          <h1>Welcome to Road2Skill</h1>
+          <p>Discover and contribute to roadmaps on our platform.</p>
+          {!isLoggedIn && (
+            <div className="auth-buttons">
+              <Link to="/login" className="button">Login</Link>
+              <Link to="/create-account" className="button">Sign Up</Link>
+            </div>
+          )}
+        </div>
+      </div>
+
       <h1>Explore Roadmaps</h1>
       
       <div className="category-selection">
