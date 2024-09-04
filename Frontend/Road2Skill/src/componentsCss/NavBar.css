@@ -1,17 +1,28 @@
 /* Navbar container */
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: right; /* Adjusted to allow space for elements like logo or additional buttons */
   align-items: center;
   background-color: #ffffff;
-  margin-right: 500px;
+  padding: 10px 10px; /* Added padding */
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
   position: fixed;
   top: 0;
-  width: 99%;
+  left: 0; /* Added to center it fully */
+  width: 100%; /* Occupies full width */
   z-index: 1000;
+}
+
+/* Navbar logo put in the left most side */
+.logo {
+  margin-right: auto;
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+
 }
 
 /* Navbar links */
@@ -22,19 +33,21 @@
   text-align: center;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin: 0 10px;
-  border-radius: 4px;
+  border-radius: 20px;
+  /* border: 1px solid #6a11cb; */
 }
 
 /* Hover effect for links */
 .navbar a:hover {
-  background-color: #007bff;
-  color: white;
+  /* background-color: #6a11cb; */
+
+  color: #6a11cb;
 }
 
 /* Active link styling */
 .navbar a.active {
-  background-color: #0056b3;
-  color: white;
+  /* background-color: #6a11cb; */
+  color: #6a11cb;
 }
 
 /* Log Out button styling */
@@ -51,21 +64,43 @@
 }
 
 .logout-button:hover {
-  background-color: #007bff;
-  color: white;
+  /* background-color: #6a11cb; */
+  color: #6a11cb;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
+    padding: 10px; /* Adjusted padding */
   }
 
-  .navbar a {
-    margin: 5px 0;
-  }
-
-  .logout-button {
+  .navbar a, .logout-button {
     margin: 5px 0;
   }
 }
+
+
+/* Add styles for the search bar and navbar auth buttons */
+/* .search-bar {
+  padding: 8px;
+  margin: 0 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.navbar-auth-button {
+  color: rgb(0, 0, 0);
+  padding: 10px 15px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 5px;
+  border-radius: 20px;
+}
+
+.navbar-auth-button:hover {
+  background-color: #6a11cb;
+  color: white;
+} */
+
