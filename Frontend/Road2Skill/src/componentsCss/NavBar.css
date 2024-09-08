@@ -4,7 +4,7 @@
   justify-content: right; /* Adjusted to allow space for elements like logo or additional buttons */
   align-items: center;
   background-color: #ffffff;
-  padding: 10px 10px; /* Added padding */
+  /* padding: 10px 10px; Added padding */
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
