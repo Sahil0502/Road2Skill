@@ -1,0 +1,164 @@
+/* Container to hold both the image and form */
+.login-container {
+  display: flex;
+  height: 92dvh;
+  font-family: Arial, sans-serif;
+  margin-top: 54px;
+}
+
+/* Styling for the image section */
+.login-image {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  background: url('/Users/mdehteshamansari00/Road2Skill/Frontend/Road2Skill/src/assets/LoginImg.jpg') center center/cover no-repeat;
+}
+
+/* Overlay for additional styling (e.g., darken the image) */
+.login-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Adjust transparency for effect */
+}
+
+/* Styling for the form section */
+.login-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center elements inside the box */
+  padding: 20px;
+  background: #ffffff;
+}
+
+/* Box container for right side elements */
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9; /* Light background for contrast */
+}
+
+/* Headings and paragraph inside the form */
+.login-form h2 {
+  margin-bottom: 10px;
+  font-size: 2em;
+  color: #333;
+}
+
+.login-form p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure form takes full width of the box */
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%; /* Make inputs take full width of their parent */
+  box-sizing: border-box; /* Ensure padding does not overflow the container */
+}
+
+/* Styling for the 'Remember Me' and 'Forgot Password?' section */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.login-options a {
+  color: #6a11cb;
+  text-decoration: none;
+}
+
+.login-options a:hover {
+  text-decoration: underline;
+}
+
+/* Styling for the Sign In button */
+.login-form button {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%; /* Full width inside the box */
+  max-width: 400px; /* Keeps the button width consistent */
+  background: #6a11cb;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-form button:hover {
+  background: #6a11cb;
+}
+
+/* Footer section with links to create an account or social login */
+.login-footer {
+  margin-top: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.login-footer a {
+  color: #6a11cb;
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Social login icons section */
+.social-login {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-login span {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .login-container {
+      flex-direction: column;
+  }
+
+  .login-image {
+      height: 50vh;
+  }
+
+  .login-form {
+      padding: 20px;
+  }
+}

@@ -1,0 +1,163 @@
+.contribution-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contribution-form h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+.contribution-form h2 {
+  color: #444;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+.contribution-form h3 {
+  color: #555;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.contribution-form h4 {
+  color: #666;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.contribution-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 600;
+}
+
+.contribution-form input[type="text"],
+.contribution-form input[type="url"],
+.contribution-form textarea,
+.contribution-form select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.contribution-form input[type="text"]:focus,
+.contribution-form input[type="url"]:focus,
+.contribution-form textarea:focus,
+.contribution-form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.contribution-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contribution-form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.contribution-form button:hover {
+  transform: translateY(-2px);
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+  margin-right: 10px;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+.remove-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.remove-btn:hover {
+  background-color: #c82333;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+  width: 100%;
+  margin-top: 30px;
+  padding: 15px;
+  font-size: 18px;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.step-container {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.resources {
+  margin-top: 20px;
+}
+
+.resource-input {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.resource-input input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .contribution-form {
+    padding: 20px;
+  }
+  
+  .contribution-form h1 {
+    font-size: 2em;
+  }
+  
+  .contribution-form h2 {
+    font-size: 1.6em;
+  }
+  
+  .contribution-form h3 {
+    font-size: 1.3em;
+  }
+  
+  .contribution-form h4 {
+    font-size: 1.1em;
+  }
+}
