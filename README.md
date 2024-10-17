@@ -53,4 +53,4 @@ We’re just getting started and would love your help! Whether you’re a develo
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 📬 Contact
-Have questions or suggestions? Feel free to open an issue or connect with me at mdehteshamansari00@gmail.com.
+Have questions or suggestions? Feel free to open an issue or connect with me at sahilsinghm32@gmail.com.
