@@ -1,7 +1,17 @@
 import { Router } from "express";
 import { User } from "../mongoose/schemas/user.mjs";
 import { hashPassword } from "../utils/helper.mjs";
+import passport from "passport";
+
 const userRouter = Router();
+
+// Middleware for authentication
+const requireAuth = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  return res.status(401).json({ msg: 'Unauthorized. Please login.' });
+};
 
 // Middleware for validating user input
 const validateUser = (req, res, next) => {
@@ -57,6 +67,105 @@ userRouter.get("/api/users/:username", async (req, res) => {
   } catch (err) {
     console.error(err);
     return res.status(500).send({ msg: "Server error. Please try again later." });
+  }
+});
+
+// Route for getting user progress
+userRouter.get("/api/user/progress", requireAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('progress');
+    if (!user) {
+      return res.status(404).json({ msg: "User not found." });
+    }
+    return res.json(user.progress);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: "Server error. Please try again later." });
+  }
+});
+
+// Route for starting a roadmap (add to user's progress)
+userRouter.post("/api/user/progress/start/:roadmapId", requireAuth, async (req, res) => {
+  const { roadmapId } = req.params;
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found." });
+    }
+
+    // Check if roadmap is already in progress
+    const existingProgress = user.progress.completedRoadmaps.find(
+      r => r.roadmapId.toString() === roadmapId
+    );
+
+    if (existingProgress) {
+      return res.status(400).json({ msg: "Roadmap already started." });
+    }
+
+    // Add new roadmap to progress
+    user.progress.completedRoadmaps.push({
+      roadmapId: roadmapId,
+      progress: 0,
+      completedSteps: []
+    });
+
+    await user.save();
+    return res.json({ msg: "Roadmap started successfully." });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: "Server error. Please try again later." });
+  }
+});
+
+// Route for updating step progress
+userRouter.post("/api/user/progress/:roadmapId", requireAuth, async (req, res) => {
+  const { roadmapId } = req.params;
+  const { stepIndex, completed } = req.body;
+  
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found." });
+    }
+
+    // Find the roadmap in user's progress
+    const roadmapProgress = user.progress.completedRoadmaps.find(
+      r => r.roadmapId.toString() === roadmapId
+    );
+
+    if (!roadmapProgress) {
+      return res.status(404).json({ msg: "Roadmap not found in user progress." });
+    }
+
+    // Update completed steps
+    if (completed) {
+      if (!roadmapProgress.completedSteps.includes(stepIndex)) {
+        roadmapProgress.completedSteps.push(stepIndex);
+      }
+    } else {
+      roadmapProgress.completedSteps = roadmapProgress.completedSteps.filter(
+        step => step !== stepIndex
+      );
+    }
+
+    // Update progress percentage (you'll need to get total steps from roadmap)
+    // For now, assuming you pass totalSteps in the request
+    const { totalSteps } = req.body;
+    if (totalSteps) {
+      roadmapProgress.progress = Math.round(
+        (roadmapProgress.completedSteps.length / totalSteps) * 100
+      );
+    }
+
+    await user.save();
+    return res.json({
+      msg: "Progress updated successfully.",
+      progress: roadmapProgress.progress,
+      completedSteps: roadmapProgress.completedSteps
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: "Server error. Please try again later." });
   }
 });
 

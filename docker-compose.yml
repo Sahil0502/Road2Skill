@@ -1,0 +1,37 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: road2skill-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: roadmapapp
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - road2skill-network
+
+  app:
+    build: .
+    container_name: road2skill-app
+    restart: unless-stopped
+    ports:
+      - "3000:3001"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/roadmapapp?authSource=admin
+      - PORT=3001
+    depends_on:
+      - mongodb
+    networks:
+      - road2skill-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  road2skill-network:
+    driver: bridge

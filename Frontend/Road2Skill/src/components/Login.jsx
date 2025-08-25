@@ -26,7 +26,9 @@ function Login({ setIsLoggedIn }) {  // Accept setIsLoggedIn as a prop
     e.preventDefault();
     console.log('Form submitted:', formData);
     try {
-      const response = await axios.post('/api/auth/login', formData);
+      const response = await axios.post('/api/auth/login', formData, {
+        withCredentials: true
+      });
       console.log('Login successful:', response.data);
       setIsLoggedIn(true);  // Update login status to true
       navigate('/');  // Redirect to the home page

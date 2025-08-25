@@ -11,6 +11,21 @@ const contributionSchema = new Schema({
     type: mongoose.Schema.Types.String,
     maxlength: 50,
   },
+  domain: {
+    type: mongoose.Schema.Types.String,
+    required: true,
+    enum: [
+      'web-development',
+      'mobile-development', 
+      'data-science',
+      'machine-learning',
+      'cybersecurity',
+      'cloud-computing',
+      'database',
+      'game-development',
+      'devops'
+    ],
+  },
   techStack: {
     type: mongoose.Schema.Types.String,
     required: true,

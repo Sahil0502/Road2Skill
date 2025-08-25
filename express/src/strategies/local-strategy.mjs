@@ -32,7 +32,13 @@ export default passport.use(
     new Strategy(async(username,password,done) => {
         console.log(`Username and password are ${username} and ${password}`);
         try{
-            const findUser = await User.findOne({username});
+            // Find user by username or email
+            const findUser = await User.findOne({
+                $or: [
+                    { username: username },
+                    { email: username }
+                ]
+            });
             if (!findUser) {
                 return done(new Error("User not found"), null);
             }

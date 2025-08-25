@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { FaPlus, FaTrash } from 'react-icons/fa';
 import '../componentsCss/ContributionForm.css';
 
@@ -6,6 +7,7 @@ function ContributionForm() {
   const [formData, setFormData] = useState({
     title: '',
     contributorName: '',
+    domain: '',
     techStack: '',
     roadmapDescription: '',
     roadmapSteps: [{ stepTitle: '', stepDescription: '', resources: [''] }],
@@ -14,6 +16,18 @@ function ContributionForm() {
     tags: [''],
     user: '',
   });
+
+  const domainOptions = [
+    { value: 'web-development', label: 'Web Development' },
+    { value: 'mobile-development', label: 'Mobile Development' },
+    { value: 'data-science', label: 'Data Science' },
+    { value: 'machine-learning', label: 'Machine Learning/AI' },
+    { value: 'cybersecurity', label: 'Cybersecurity' },
+    { value: 'cloud-computing', label: 'Cloud Computing' },
+    { value: 'database', label: 'Database Management' },
+    { value: 'game-development', label: 'Game Development' },
+    { value: 'devops', label: 'DevOps' }
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,7 +83,7 @@ function ContributionForm() {
       console.log('Contribution created:', response.data);
       // Handle successful creation, e.g., redirect or show a success message
     } catch (error) {
-      console.error('Error creating contribution:', error.response.data);
+      console.error('Error creating contribution:', error.response?.data || error.message || error);
       // Handle error, e.g., show an error message
     }
   };
@@ -85,6 +99,17 @@ function ContributionForm() {
         <div className="form-group">
           <label htmlFor="contributorName">Contributor Name</label>
           <input type="text" id="contributorName" name="contributorName" value={formData.contributorName} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="domain">Domain</label>
+          <select id="domain" name="domain" value={formData.domain} onChange={handleChange} required>
+            <option value="">Select a domain</option>
+            {domainOptions.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="techStack">Tech Stack</label>

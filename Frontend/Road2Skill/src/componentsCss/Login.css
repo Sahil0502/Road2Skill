@@ -1,9 +1,23 @@
+/* Base styles for preventing scroll */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
 /* Container to hold both the image and form */
 .login-container {
   display: flex;
-  height: 92dvh;
+  height: 100vh;
   font-family: Arial, sans-serif;
-  margin-top: 54px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Styling for the image section */
@@ -12,8 +26,18 @@
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  background: url('/Users/mdehteshamansari00/Road2Skill/Frontend/Road2Skill/src/assets/LoginImg.jpg') center center/cover no-repeat;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background: url('Road2Skill\Frontend\Road2Skill\src\assets\LoginImg.jpg') center center/cover no-repeat;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Overlay for additional styling (e.g., darken the image) */
@@ -23,7 +47,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Adjust transparency for effect */
+  background: rgba(0, 0, 0, 0.2); 
 }
 
 /* Styling for the form section */
@@ -35,6 +59,9 @@
   align-items: center; /* Center elements inside the box */
   padding: 20px;
   background: #ffffff;
+  min-height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 /* Box container for right side elements */
@@ -46,6 +73,8 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background: #f9f9f9; /* Light background for contrast */
+  box-sizing: border-box;
+  margin: auto;
 }
 
 /* Headings and paragraph inside the form */
@@ -74,6 +103,7 @@
   border-radius: 4px;
   font-size: 16px;
   width: 100%; /* Make inputs take full width of their parent */
+  max-width: 100%;
   box-sizing: border-box; /* Ensure padding does not overflow the container */
 }
 
@@ -100,7 +130,7 @@
   padding: 10px;
   margin-bottom: 20px;
   width: 100%; /* Full width inside the box */
-  max-width: 400px; /* Keeps the button width consistent */
+  max-width: 100%; /* Prevents overflow */
   background: #6a11cb;
   border: none;
   color: #fff;
@@ -108,6 +138,7 @@
   font-size: 16px;
   cursor: pointer;
   transition: background 0.3s ease;
+  box-sizing: border-box;
 }
 
 .login-form button:hover {
@@ -151,14 +182,226 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .login-container {
-      flex-direction: column;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
   }
 
   .login-image {
-      height: 50vh;
+    height: 40vh;
+    min-height: 200px;
+    border-radius: 0;
+    flex: none;
   }
 
   .login-form {
-      padding: 20px;
+    flex: 1;
+    padding: 15px;
+    min-height: 60vh;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+
+  .login-box {
+    padding: 20px;
+    max-width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .login-form h2 {
+    font-size: 1.5em;
+    margin-bottom: 8px;
+  }
+
+  .login-form p {
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .login-options {
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .login-form button {
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .login-footer {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    height: 100vh;
+  }
+
+  .login-image {
+    height: 30vh;
+    min-height: 150px;
+    max-height: 200px;
+  }
+
+  .login-form {
+    min-height: 70vh;
+    padding: 10px;
+  }
+
+  .login-box {
+    padding: 15px;
+  }
+
+  .login-form h2 {
+    font-size: 1.3em;
+  }
+
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+
+  .login-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .login-form button {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-height: 600px) {
+  .login-container {
+    height: 100vh;
+  }
+
+  .login-image {
+    height: 35vh;
+  }
+
+  .login-form {
+    min-height: 65vh;
+    padding: 10px;
+  }
+
+  .login-box {
+    padding: 15px;
+  }
+
+  .login-form h2 {
+    font-size: 1.4em;
+    margin-bottom: 8px;
+  }
+
+  .login-form p {
+    margin-bottom: 12px;
+  }
+
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .login-options {
+    margin-bottom: 10px;
+  }
+
+  .login-form button {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .login-footer {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 769px) and (max-height: 700px) {
+  .login-container {
+    height: 100vh;
+  }
+
+  .login-form {
+    padding: 15px;
+  }
+
+  .login-box {
+    padding: 20px;
+  }
+
+  .login-form h2 {
+    font-size: 1.6em;
+    margin-bottom: 8px;
+  }
+
+  .login-form p {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-image {
+    height: 25vh;
+    min-height: 120px;
+  }
+
+  .login-form {
+    min-height: 75vh;
+    padding: 8px;
+  }
+
+  .login-box {
+    padding: 12px;
+  }
+
+  .login-form h2 {
+    font-size: 1.2em;
+    margin-bottom: 6px;
+  }
+
+  .login-form p {
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .login-options {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .login-form button {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .login-footer {
+    margin-top: 8px;
+    font-size: 12px;
   }
 }
