@@ -4,9 +4,17 @@ import { User } from '../mongoose/schemas/user.mjs';
 
 const router = Router();
 
-// Mock Gemini API integration (replace with actual API key)
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyCUy_gwcLTyrH3lpS4e3Gtf-nk6WC_-XVE';
-const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY || 'AIzaSyAUP4uFi2KF1eORi_xpL1jH1zAKdqHyXX8';
+// API Keys from environment variables
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
+
+// Validate that API keys are configured
+if (!GEMINI_API_KEY) {
+  console.warn('⚠️  GEMINI_API_KEY not found in environment variables');
+}
+if (!YOUTUBE_API_KEY) {
+  console.warn('⚠️  YOUTUBE_API_KEY not found in environment variables');
+}
 
 // Store user onboarding data
 router.post('/api/user/onboarding', async (request, response) => {
