@@ -8,8 +8,8 @@ import CreateAccountForm from './components/CreateAccountForm';
 import Login from './components/Login';
 import Home from './components/Home';
 import ContributionForm from './components/ContributionForm';
-import RoadmapDetail from './components/RoadmapDetail';
 import RoadmapExplore from './components/RoadmapExplore';
+import RoadmapLearning from './components/RoadmapLearning';
 import UserProfile from './components/UserProfile';
 import ResourceHub from './components/ResourceHub';
 import CommunityInsights from './components/CommunityInsights';
@@ -17,6 +17,7 @@ import CareerGuidance from './components/CareerGuidance';
 import MyLearningProgress from './components/MyLearningProgress';
 import UserOnboarding from './components/UserOnboarding';
 import PersonalizedRecommendations from './components/PersonalizedRecommendations';
+import ScrollToTop from './components/ScrollToTop';
 
 // Theme Context
 const ThemeContext = createContext();
@@ -118,6 +119,7 @@ function App() {
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
       <Router>
+        <ScrollToTop />
         <div className={`app ${darkMode ? 'dark-theme' : 'light-theme'}`}>
           <nav className="modern-navbar">
             <div className="navbar-brand">
@@ -190,8 +192,8 @@ function App() {
                   isLoggedIn={isLoggedIn} 
                 />
               } />
-              <Route path="/roadmap/:id" element={<RoadmapDetail />} />
               <Route path="/roadmaps" element={<RoadmapExplore searchQuery={searchQuery} />} />
+              <Route path="/roadmap/:id/learn" element={<RoadmapLearning />} />
               <Route path="/my-progress" element={<MyLearningProgress />} />
               <Route path="/recommendations" element={
                 <ProtectedRoute 

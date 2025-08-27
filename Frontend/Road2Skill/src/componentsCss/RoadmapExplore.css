@@ -745,6 +745,33 @@
 .roadmap-card-footer {
   border-top: 1px solid var(--border-color);
   padding-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.view-details-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+  background: transparent;
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.view-details-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
 .view-roadmap-btn {
@@ -752,7 +779,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  width: 100%;
+  flex: 1;
   background: var(--primary-color);
   color: white;
   text-decoration: none;
@@ -761,6 +788,8 @@
   font-size: 0.875rem;
   font-weight: 600;
   transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .view-roadmap-btn:hover {
@@ -768,6 +797,18 @@
   transform: translateY(-1px);
   text-decoration: none;
   color: white;
+}
+
+.view-roadmap-btn.disabled {
+  background: #9ca3af;
+  color: #6b7280;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.view-roadmap-btn.disabled:hover {
+  background: #9ca3af;
+  transform: none;
 }
 
 /* Loading and Error States */

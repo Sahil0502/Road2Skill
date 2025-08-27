@@ -14,29 +14,52 @@ const sampleRoadmaps = [
     roadmapSteps: [
       {
         stepTitle: "HTML & CSS Fundamentals",
-        stepDescription: "Learn the building blocks of web development - HTML for structure and CSS for styling",
+        stepDescription: "Master the building blocks of web development. Learn HTML for creating structured content and CSS for beautiful styling. Understand semantic HTML, responsive design, and modern CSS features including Flexbox and Grid.",
         resources: [
+          "https://developer.mozilla.org/en-US/docs/Web/HTML",
+          "https://developer.mozilla.org/en-US/docs/Web/CSS",
           "https://www.w3schools.com/html/",
           "https://www.w3schools.com/css/",
-          "https://flexboxfroggy.com/"
+          "https://flexboxfroggy.com/",
+          "https://cssgridgarden.com/",
+          "https://www.youtube.com/watch?v=UB1O30fR-EE",
+          "https://www.freecodecamp.org/learn/responsive-web-design/",
+          "https://css-tricks.com/",
+          "https://codepen.io/",
+          "https://www.coursera.org/learn/html-css-javascript-for-web-developers"
         ]
       },
       {
         stepTitle: "JavaScript Basics",
-        stepDescription: "Master JavaScript fundamentals including variables, functions, and DOM manipulation",
+        stepDescription: "Master JavaScript fundamentals including variables, functions, DOM manipulation, and ES6+ features. Learn about closures, async programming, and modern JavaScript patterns that form the foundation of React development.",
         resources: [
           "https://javascript.info/",
+          "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
           "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/",
-          "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+          "https://www.youtube.com/watch?v=PkZNo7MFNFg",
+          "https://www.codecademy.com/learn/introduction-to-javascript",
+          "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+          "https://eloquentjavascript.net/",
+          "https://codewars.com/",
+          "https://leetcode.com/problemset/all/?difficulty=Easy&page=1&topicSlugs=javascript",
+          "https://github.com/getify/You-Dont-Know-JS"
         ]
       },
       {
-        stepTitle: "React Frontend",
-        stepDescription: "Build dynamic user interfaces with React components, hooks, and state management",
+        stepTitle: "React Frontend Development",
+        stepDescription: "Build modern, interactive user interfaces with React. Learn components, JSX, hooks, state management, routing, and best practices. Master the React ecosystem including popular libraries and development tools.",
         resources: [
           "https://react.dev/",
+          "https://react.dev/learn",
           "https://www.freecodecamp.org/learn/front-end-development-libraries/",
-          "https://reactrouter.com/"
+          "https://www.youtube.com/watch?v=bMknfKXIFA8",
+          "https://reactrouter.com/",
+          "https://www.youtube.com/watch?v=Ke90Tje7VS0",
+          "https://redux.js.org/",
+          "https://www.codecademy.com/learn/react-101",
+          "https://scrimba.com/learn/learnreact",
+          "https://github.com/facebook/create-react-app",
+          "https://nextjs.org/learn"
         ]
       },
       {

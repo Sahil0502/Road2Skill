@@ -11,8 +11,19 @@ const MyLearningProgress = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Scroll to top when component mounts - with timeout to ensure DOM is ready
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, 0);
+    
     fetchRoadmaps();
     fetchUserProgress();
+  }, []);
+
+  // Additional effect to ensure scroll on route change
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, []);
 
   const fetchRoadmaps = async () => {
@@ -155,9 +166,9 @@ const MyLearningProgress = () => {
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
-      case 'Beginner': return 'var(--accent-color)';
-      case 'Intermediate': return 'var(--secondary-color)';
-      case 'Advanced': return '#ef4444';
+      case 'Beginner': return '#86efac'; // Light green
+      case 'Intermediate': return '#fde047'; // Light yellow
+      case 'Advanced': return '#fca5a5'; // Light red
       default: return 'var(--text-secondary)';
     }
   };

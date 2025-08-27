@@ -52,35 +52,35 @@ function Home({ isLoggedIn }) {
       icon: <FaTrophy />,
       title: 'Progress Tracking',
       description: 'Track your learning journey with XP, levels, badges, and achievements.',
-      link: '/profile',
+      link: isLoggedIn ? '/my-progress' : '/login',
       color: '#f59e0b',
-      available: isLoggedIn
+      available: true
     },
     {
       icon: <FaLightbulb />,
       title: 'AI Learning Assistant',
-      description: 'Coming soon: Personalized AI mentor to guide your learning journey.',
-      link: '#',
+      description: 'Personalized AI mentor to guide your learning journey and provide recommendations.',
+      link: isLoggedIn ? '/recommendations' : '/login',
       color: '#8b5cf6',
-      available: false
+      available: true
     }
   ];
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
+      name: 'Sahil Singh',
       role: 'Full Stack Developer',
       avatar: 'https://ui-avatars.com/api/?name=Sarah+Johnson&background=6366f1&color=fff',
       quote: 'Road2Skill helped me transition from marketing to tech in just 8 months. The interactive roadmaps made learning so much easier!'
     },
     {
-      name: 'Mike Chen',
+      name: 'Ehtesham Ansari',
       role: 'Data Scientist',
       avatar: 'https://ui-avatars.com/api/?name=Mike+Chen&background=10b981&color=fff',
       quote: 'The community support and structured learning paths gave me the confidence to land my dream job at a top tech company.'
     },
     {
-      name: 'Alex Rivera',
+      name: 'Rajiv Ranjan',
       role: 'UI/UX Designer',
       avatar: 'https://ui-avatars.com/api/?name=Alex+Rivera&background=f59e0b&color=fff',
       quote: 'Amazing platform! The progress tracking and badges kept me motivated throughout my learning journey.'
@@ -280,7 +280,7 @@ function Home({ isLoggedIn }) {
             <div className="social-links">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/sahil-singh-ss9824/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
           </div>
           

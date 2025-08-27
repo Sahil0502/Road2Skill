@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaPlay, FaBookmark, FaExternalLinkAlt, FaRobot, FaYoutube, FaStickyNote, FaChevronRight, FaTrophy, FaFire, FaClock, FaUser, FaCog, FaEdit, FaTimes, FaCheckCircle, FaLightbulb, FaRocket, FaGraduationCap, FaCode, FaStar } from 'react-icons/fa';
 import axios from 'axios';
 import '../componentsCss/PersonalizedRecommendations.css';
-import '../componentsCss/SettingsModal.css';
 
 const PersonalizedRecommendations = () => {
   const [recommendations, setRecommendations] = useState({

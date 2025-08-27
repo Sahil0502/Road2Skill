@@ -201,10 +201,10 @@ function RoadmapExplore() {
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
-      case 'Beginner': return '#10b981';
-      case 'Intermediate': return '#f59e0b';
-      case 'Advanced': return '#ef4444';
-      default: return '#6b7280';
+      case 'Beginner': return '#86efac'; // Light green
+      case 'Intermediate': return '#fde047'; // Light yellow
+      case 'Advanced': return '#fca5a5'; // Light red
+      default: return '#9ca3af'; // Light gray
     }
   };
 
@@ -278,7 +278,10 @@ function RoadmapExplore() {
         </div>
 
         <div className="roadmap-card-footer">
-          <Link to={`/roadmap/${roadmap._id}`} className="view-roadmap-btn">
+          <Link to={`/roadmap/${roadmap._id}`} className="view-details-btn">
+            View Details
+          </Link>
+          <Link to={`/roadmap/${roadmap._id}/learn`} className="view-roadmap-btn">
             <FaPlay /> Start Learning
           </Link>
         </div>

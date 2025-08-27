@@ -122,9 +122,9 @@ const ResourceHub = ({ searchQuery }) => {
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
-      case 'Beginner': return 'var(--accent-color)';
-      case 'Intermediate': return 'var(--secondary-color)';
-      case 'Advanced': return '#ef4444';
+      case 'Beginner': return '#86efac'; // Light green
+      case 'Intermediate': return '#fde047'; // Light yellow
+      case 'Advanced': return '#fca5a5'; // Light red
       default: return 'var(--text-secondary)';
     }
   };
