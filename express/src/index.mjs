@@ -24,12 +24,19 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors()); // Enable CORS for all routes
 
-// Connect to MongoDB
+// Connect to MongoDB with retry/backoff (helps in containerized hosts where DB may be provisioned separately)
 const mongoUri = process.env.MONGODB_URI || "mongodb://localhost:27017/roadmapapp";
-mongoose.connect(mongoUri)
-  .then(async () => {
+
+const connectWithRetry = async (retries = 10, delay = 5000) => {
+  try {
+    await mongoose.connect(mongoUri, {
+      // Use recommended options
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
     console.log("Connected to MongoDB");
-    
+
     // Only run seeding if not explicitly skipped
     if (process.env.SKIP_SEEDING !== 'true') {
       try {
@@ -41,12 +48,24 @@ mongoose.connect(mongoUri)
     } else {
       console.log("Database seeding skipped");
     }
-  })
-  .catch((err) => {
+
+  } catch (err) {
     console.error("Failed to connect to MongoDB:", err.message);
     console.log("Please ensure MongoDB is running and accessible");
-    process.exit(1);
-  });
+
+    if (retries > 0) {
+      console.log(`Retrying MongoDB connection in ${delay / 1000}s... (${retries} attempts left)`);
+      setTimeout(() => connectWithRetry(retries - 1, Math.min(delay * 1.5, 30000)), delay);
+    } else {
+      console.error("Could not connect to MongoDB after multiple attempts. Exiting.");
+      // In production you might prefer to let the process exit so the platform restarts the service
+      process.exit(1);
+    }
+  }
+};
+
+// Start the initial connection attempts
+connectWithRetry();
 
 
 
