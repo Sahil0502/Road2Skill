@@ -1,22 +1,24 @@
 import { User } from './schemas/user.mjs';
+import { hashPassword } from '../utils/helper.mjs';
 
 export const seedUsers = async () => {
   try {
     console.log('Seeding users...');
     
-    // Check if system user already exists
-    const existingUser = await User.findOne({ email: 'system@road2skill.com' });
-    if (!existingUser) {
-      await User.create({
-        username: 'road2skill_system',
-        email: 'system@road2skill.com',
-        password: 'system_generated',
-        isVerified: true
-      });
-      console.log('System user created');
-    } else {
-      console.log('System user already exists');
-    }
+    // Clear existing test users to recreate with hashed passwords
+    await User.deleteMany({ 
+      email: { $in: ['dipu@gmail.com', 'sahil@gmail.com', 'system@road2skill.com'] } 
+    });
+    console.log('Cleared existing test users');
+    
+    // Create system user
+    await User.create({
+      username: 'road2skill_system',
+      email: 'system@road2skill.com',
+      password: hashPassword('system_generated'),
+      isVerified: true
+    });
+    console.log('System user created');
 
     // Create test users for login testing
     const testUsers = [
@@ -35,13 +37,13 @@ export const seedUsers = async () => {
     ];
 
     for (const userData of testUsers) {
-      const existingTestUser = await User.findOne({ email: userData.email });
-      if (!existingTestUser) {
-        await User.create(userData);
-        console.log(`Test user created: ${userData.username}`);
-      } else {
-        console.log(`Test user already exists: ${userData.username}`);
-      }
+      // Hash the password before creating the user
+      const hashedPassword = hashPassword(userData.password);
+      await User.create({
+        ...userData,
+        password: hashedPassword
+      });
+      console.log(`Test user created: ${userData.username} with hashed password`);
     }
   } catch (error) {
     console.error('Error seeding users:', error);
