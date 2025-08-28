@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaSearch, FaFilter, FaClock, FaUser, FaStar, FaBookmark, FaPlay, FaTrophy, FaDesktop, FaMobile, FaChartLine, FaRobot, FaShieldAlt, FaCloud, FaDatabase, FaGamepad, FaCode, FaChevronRight } from 'react-icons/fa';
 import axios from 'axios';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api.js';
 import { useTheme } from '../App';
 import '../componentsCss/RoadmapExplore.css';
 
@@ -80,7 +81,7 @@ function RoadmapExplore() {
   const fetchRoadmaps = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3001/api/auth/contributions');
+      const response = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.ROADMAPS.GET_ALL}`);
       setRoadmaps(response.data);
     } catch (err) {
       setError('Failed to fetch roadmaps');
@@ -94,7 +95,7 @@ function RoadmapExplore() {
     try {
       const token = localStorage.getItem('token');
       if (token) {
-        const response = await axios.get('http://localhost:3001/api/user/progress', {
+        const response = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.USER.PROGRESS}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const progressMap = {};
@@ -104,7 +105,7 @@ function RoadmapExplore() {
         setUserProgress(progressMap);
         
         // Fetch bookmarked roadmaps
-        const profileResponse = await axios.get('http://localhost:3001/api/user/profile', {
+        const profileResponse = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.USER.PROFILE}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setBookmarkedRoadmaps(new Set(profileResponse.data.bookmarkedRoadmaps || []));
@@ -181,7 +182,7 @@ function RoadmapExplore() {
       
       await axios({
         method,
-        url: `http://localhost:3001/api/user/bookmark/${roadmapId}`,
+        url: `${API_BASE_URL}/api/user/bookmark/${roadmapId}`,
         headers: { Authorization: `Bearer ${token}` }
       });
 

@@ -187,12 +187,16 @@ const CommunityInsights = () => {
             <div className="post-header">
               <div className="post-author">
                 <img
-                  src={`https://ui-avatars.com/api/?name=${post.author.username}&background=6366f1&color=fff`}
-                  alt={post.author.username}
+                  src={`https://ui-avatars.com/api/?name=${post.author?.username || 'Anonymous'}&background=6366f1&color=fff`}
+                  alt={post.author?.username || 'Anonymous'}
                   className="author-avatar"
                 />
                 <div className="author-info">
-                  <h4>{(post.author.profile?.firstName && post.author.profile?.lastName) ? `${post.author.profile.firstName} ${post.author.profile.lastName}` : post.author.username}</h4>
+                  <h4>{post.author ? 
+                    (post.author.profile?.firstName && post.author.profile?.lastName) ? 
+                      `${post.author.profile.firstName} ${post.author.profile.lastName}` : 
+                      post.author.username 
+                    : 'Anonymous'}</h4>
                   <span className="post-time">{formatTimeAgo(post.createdAt)}</span>
                 </div>
               </div>
@@ -247,7 +251,7 @@ const CommunityInsights = () => {
                 <h5>Recent Comments</h5>
                 {post.comments.slice(0, 2).map((comment, commentIndex) => (
                   <div key={commentIndex} className="comment">
-                    <strong>@{comment.author.username}</strong>
+                    <strong>@{comment.author?.username || 'Anonymous'}</strong>
                     <span>{comment.content}</span>
                   </div>
                 ))}

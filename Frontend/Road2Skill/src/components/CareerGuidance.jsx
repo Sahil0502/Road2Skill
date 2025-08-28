@@ -315,13 +315,17 @@ const CareerGuidance = () => {
             <div className="guidance-footer">
               <div className="author-info">
                 <img
-                  src={`https://ui-avatars.com/api/?name=${item.author.username}&background=6366f1&color=fff`}
-                  alt={item.author.username}
+                  src={`https://ui-avatars.com/api/?name=${item.author?.username || 'Anonymous'}&background=6366f1&color=fff`}
+                  alt={item.author?.username || 'Anonymous'}
                   className="author-avatar"
                 />
                 <div>
                   <span className="author-name">
-                    {(item.author.profile?.firstName && item.author.profile?.lastName) ? `${item.author.profile.firstName} ${item.author.profile.lastName}` : item.author.username}
+                    {item.author ? 
+                      (item.author.profile?.firstName && item.author.profile?.lastName) ? 
+                        `${item.author.profile.firstName} ${item.author.profile.lastName}` : 
+                        item.author.username 
+                      : 'Anonymous'}
                   </span>
                   <span className="publish-date">{formatTimeAgo(item.createdAt)}</span>
                 </div>
@@ -409,9 +413,11 @@ const CareerGuidance = () => {
                 <div className="meta-item">
                   <FaUser className="meta-icon" />
                   <span>
-                    {(selectedGuidance.author.profile?.firstName && selectedGuidance.author.profile?.lastName) 
-                      ? `${selectedGuidance.author.profile.firstName} ${selectedGuidance.author.profile.lastName}` 
-                      : selectedGuidance.author.username}
+                    {selectedGuidance.author ? 
+                      (selectedGuidance.author.profile?.firstName && selectedGuidance.author.profile?.lastName) 
+                        ? `${selectedGuidance.author.profile.firstName} ${selectedGuidance.author.profile.lastName}` 
+                        : selectedGuidance.author.username
+                      : 'Anonymous'}
                   </span>
                 </div>
                 <div className="meta-item">

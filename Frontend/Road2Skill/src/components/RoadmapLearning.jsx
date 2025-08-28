@@ -14,6 +14,7 @@ import {
   FaBrain, FaHandsHelping, FaProjectDiagram, FaTools
 } from 'react-icons/fa';
 import axios from 'axios';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api.js';
 import { useTheme } from '../App';
 import '../componentsCss/RoadmapLearning.css';
 
@@ -128,7 +129,7 @@ function RoadmapLearning() {
   const fetchRoadmap = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:3001/api/auth/contributions/${id}`);
+      const response = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.ROADMAPS.GET_BY_ID}/${id}`);
       setRoadmap(response.data);
       
       // Initialize step notes
@@ -151,7 +152,7 @@ function RoadmapLearning() {
     try {
       const token = localStorage.getItem('token');
       if (token) {
-        const response = await axios.get('http://localhost:3001/api/user/progress', {
+        const response = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.USER.PROGRESS}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -161,7 +162,7 @@ function RoadmapLearning() {
         }
 
         // Check if bookmarked
-        const profileResponse = await axios.get('http://localhost:3001/api/user/profile', {
+        const profileResponse = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.USER.PROFILE}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setIsBookmarked(profileResponse.data.bookmarkedRoadmaps?.includes(id));
@@ -197,7 +198,7 @@ function RoadmapLearning() {
 
       const newProgress = Math.round((newCompletedSteps.length / roadmap.roadmapSteps.length) * 100);
 
-      await axios.post(`http://localhost:3001/api/user/progress/${id}`, {
+      await axios.post(`${API_BASE_URL}/api/user/progress/${id}`, {
         completedSteps: newCompletedSteps,
         progress: newProgress
       }, {
