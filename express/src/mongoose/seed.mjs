@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { seedUsers } from './seed-users.mjs';
 import { seedContributions } from './seed-contributions.mjs';
 import { seedCareerGuidance } from './seed-career-guidance.mjs';
+import { seedCommunityPosts } from './seed-community.mjs';
+import { seedResources } from './seed-resources.mjs';
 
 const seedDatabase = async () => {
   try {
@@ -14,14 +16,20 @@ const seedDatabase = async () => {
       console.log('Connected to MongoDB for seeding');
     }
     
-    // Seed users first
+    // Seed users first (required for other collections)
     await seedUsers();
     
-    // Then seed contributions
+    // Then seed contributions (roadmaps)
     await seedContributions();
     
-    // Finally seed career guidance
+    // Seed career guidance
     await seedCareerGuidance();
+    
+    // Seed community posts
+    await seedCommunityPosts();
+    
+    // Seed resources
+    await seedResources();
     
     console.log('Database seeding completed successfully!');
   } catch (error) {
