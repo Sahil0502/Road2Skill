@@ -25,15 +25,11 @@ const app = express();
 app.use(cors()); // Enable CORS for all routes
 
 // Connect to MongoDB with retry/backoff (helps in containerized hosts where DB may be provisioned separately)
-const mongoUri = process.env.MONGODB_URI || "mongodb://localhost:27017/roadmapapp";
+const mongoUri = process.env.MONGODB_URI || "mongodb://mongodb:27017/roadmapapp";
 
 const connectWithRetry = async (retries = 10, delay = 5000) => {
   try {
-    await mongoose.connect(mongoUri, {
-      // Use recommended options
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(mongoUri);
 
     console.log("Connected to MongoDB");
 
