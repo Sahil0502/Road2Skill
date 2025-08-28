@@ -279,9 +279,6 @@ function RoadmapExplore() {
         </div>
 
         <div className="roadmap-card-footer">
-          <Link to={`/roadmap/${roadmap._id}`} className="view-details-btn">
-            View Details
-          </Link>
           <Link to={`/roadmap/${roadmap._id}/learn`} className="view-roadmap-btn">
             <FaPlay /> Start Learning
           </Link>
