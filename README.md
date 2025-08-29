@@ -1,6 +1,6 @@
 # Road2Skill - Professional Learning Platform
 
-🚀 **[Live Demo](https://road2skill.railway.app)** | 📱 **Responsive Design** | ⚡ **Modern Tech Stack**
+🚀 **[Live Demo](road2skill-production.up.railway.app/)** | 📱 **Responsive Design** | ⚡ **Modern Tech Stack**
 
 Road2Skill is a full-stack learning platform that helps users master new skills through structured roadmaps, curated resources, and community collaboration. Built with React.js and Node.js, featuring real-time progress tracking, interactive dashboards, and modern UI/UX design.
 
@@ -380,11 +380,11 @@ I welcome contributions from developers who want to improve the learning experie
 ## 📞 Contact & Links
 
 ### Project Information
-- **🌐 Live Demo**: [https://road2skill.railway.app](https://road2skill.railway.app)
+- **🌐 Live Demo**: [road2skill-production.up.railway.app/](road2skill-production.up.railway.app/)
 - **📂 GitHub Repository**: [https://github.com/Sahil0502/Road2Skill](https://github.com/Sahil0502/Road2Skill)
-- **👨‍💻 Developer**: Sahil Joshi
-- **📧 Contact**: [Your Professional Email]
-- **💼 LinkedIn**: [Your LinkedIn Profile]
+- **👨‍💻 Developer**: Sahil Singh
+- **📧 Contact**: [sahilsinghm32@gmail.com]
+- **💼 LinkedIn**: [https://www.linkedin.com/in/sahil-singh-ss9824/]
 
 ### Project Statistics
 - **🔧 Backend**: Node.js, Express.js, MongoDB
@@ -412,6 +412,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 *Built with passion for education and modern web technologies*
 
-**[🚀 Try Live Demo](https://road2skill.railway.app)** | **[⭐ Star this repository](https://github.com/Sahil0502/Road2Skill)** | **[🐛 Report Issues](https://github.com/Sahil0502/Road2Skill/issues)**
+**[🚀 Try Live Demo](road2skill-production.up.railway.app/)** | **[⭐ Star this repository](https://github.com/Sahil0502/Road2Skill)** | **[🐛 Report Issues](https://github.com/Sahil0502/Road2Skill/issues)**
 
 </div> 
