@@ -382,7 +382,7 @@ I welcome contributions from developers who want to improve the learning experie
 ### Project Information
 - **🌐 Live Demo**: [https://road2skill-production.up.railway.app/](https://road2skill-production.up.railway.app/)
 - **📂 GitHub Repository**: [https://github.com/Sahil0502/Road2Skill](https://github.com/Sahil0502/Road2Skill)
-- **👨‍💻 Developer**: Sahil Singh
+- **👨‍💻 Developer**: Sahil .R. Singh
 - **📧 Contact**: [sahilsinghm32@gmail.com]
 - **💼 LinkedIn**: [https://www.linkedin.com/in/sahil-singh-ss9824/]
 
